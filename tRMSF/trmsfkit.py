@@ -8,7 +8,7 @@ All code and documentation are modeled after the RMSF analysis class from the MD
 from MDAnalysis.analysis.base import AnalysisBase
 import numpy as np
 
-class tRMSF(AnalysisBase):
+class trmsfkit(AnalysisBase):
     r"""Calculate time-dependent RMSF of given atoms across a trajectory.
 
     Note
@@ -18,15 +18,15 @@ class tRMSF(AnalysisBase):
     aligned to a reference structure. The protein also has be whole because
     periodic boundaries are not taken into account.
 
-    Run the analysis with :meth:`tRMSF.run`, which stores the results in the
-    array :attr:`tRMSF.results.trmsf`.
+    Run the analysis with :meth:`trmsfkit.run`, which stores the results in the
+    array :attr:`trmsfkit.results.trmsf`.
 
     """
     def __init__(self, atomgroup, skip=1, reference_frame=0, **kwargs):
         r"""Parameters
         ----------
         atomgroup : AtomGroup
-            Atoms for which tRMSF is calculated
+            Atoms for which trmsfkit is calculated
         skip : int (optional)
             Number of frames to skip during the calculation, default is 1.
         reference_frame : int (optional)
@@ -63,7 +63,7 @@ class tRMSF(AnalysisBase):
             Welford1962
 
         """
-        super(tRMSF, self).__init__(atomgroup.universe.trajectory, **kwargs)
+        super(trmsfkit, self).__init__(atomgroup.universe.trajectory, **kwargs)
         self.atomgroup = atomgroup
         self.skip = skip
         self.reference_frame = reference_frame
