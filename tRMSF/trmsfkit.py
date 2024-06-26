@@ -85,14 +85,14 @@ class trmsfkit(AnalysisBase):
             self.seg_length = 0
 
         # Accumulate coordinates for averaging
-        self.avg_coordinates += self.atomgroup.positions
+        self.avg_coordinates += (self.atomgroup.positions - self.reference_positions)**2
         self.seg_length += 1
 
         # At the end of a segment, calculate the RMSF
         if (frame_index + 1) == self.skip or self._frame_index == (len(self._trajectory) - 1):
             avg_coordinates = self.avg_coordinates / self.seg_length
-            diff = self.reference_positions - avg_coordinates
-            rmsf = np.sqrt(np.sum(diff**2, axis=1))
+            # diff = self.reference_positions - avg_coordinates
+            rmsf = np.sqrt(np.sum(avg_coordinates, axis=1))
             self.results.trmsf[seg_num] = rmsf
 
     def _conclude(self):
