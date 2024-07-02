@@ -93,7 +93,7 @@ class trmsfkit(AnalysisBase):
             avg_coordinates = self.avg_coordinates / self.seg_length
             # diff = self.reference_positions - avg_coordinates
             rmsf = np.sqrt(np.sum(avg_coordinates, axis=1))
-            self.results.trmsf[seg_num] = rmsf
+            self.results.trmsf[seg_num] = rmsf.T
 
     def _conclude(self):
         if not (self.results.trmsf >= 0).all():
